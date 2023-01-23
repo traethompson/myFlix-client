@@ -13,14 +13,15 @@ export const MainView = () =>{
             const moviesFromApi = data.docs.map((doc) =>{
                 return{
                     id: doc.key,
-                    title: doc.title,
-                    description: doc.description,
-                    director: doc.director_name?.[0]
+                    title: doc.Title,
+                    description: doc.Description,
+                    director: doc.Director_Name?.[0]
                 };
             });
             setMovies(moviesFromApi);
         });
     }, []);
+
 
     if (selectedMovie){
         return <MovieView movie = {selectedMovie} onBackClick={() =>
