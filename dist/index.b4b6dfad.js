@@ -27270,9 +27270,9 @@ const MainView = ()=>{
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         fetch("https://exampleapi.onrender.com/movies").then((response)=>response.json()).then((data)=>{
-            const moviesFromApi = data.docs.map((doc)=>{
+            const moviesFromApi = data.map((doc)=>{
                 return {
-                    id: doc.key,
+                    id: doc.id,
                     title: doc.Title,
                     description: doc.Description,
                     director: doc.Director_Name?.[0]
@@ -27283,7 +27283,7 @@ const MainView = ()=>{
     }, []);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
-        onBackClick: ()=>setSelectedBook(null)
+        onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/component/main-view/main-view.jsx",
         lineNumber: 27,
@@ -27297,12 +27297,12 @@ const MainView = ()=>{
         columnNumber: 16
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+        children: movies && movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                 movie: movie,
                 onMovieClick: (newSelectedMovie)=>{
                     setSelectedMovie(newSelectedMovie);
                 }
-            }, movie.id, false, {
+            }, movie._id, false, {
                 fileName: "src/component/main-view/main-view.jsx",
                 lineNumber: 38,
                 columnNumber: 17
