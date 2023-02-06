@@ -10,9 +10,9 @@ export const MainView = () =>{
         fetch("https://exampleapi.onrender.com/movies")
         .then((response)=>response.json())
         .then((data)=>{
-            const moviesFromApi = data.docs.map((doc) =>{
+            const moviesFromApi = data.map((doc) =>{
                 return{
-                    id: doc.key,
+                    id: doc.id,
                     title: doc.Title,
                     description: doc.Description,
                     director: doc.Director_Name?.[0]
@@ -25,7 +25,7 @@ export const MainView = () =>{
 
     if (selectedMovie){
         return <MovieView movie = {selectedMovie} onBackClick={() =>
-        setSelectedBook(null)} />;
+        setSelectedMovie(null)} />;
     }
 
     if (movies.length===0){
@@ -34,9 +34,9 @@ export const MainView = () =>{
 
     return (
         <div>
-            {movies.map((movie)=> (
+            {movies && movies.map((movie)=> (
                 <MovieCard
-                key = {movie.id}
+                key = {movie._id}
                 movie = {movie}
                 onMovieClick={(newSelectedMovie)=>{
                     setSelectedMovie(newSelectedMovie);
